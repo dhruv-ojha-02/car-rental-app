@@ -27,36 +27,20 @@ function BookingCar() {
   const [totalAmount, setTotalAmount] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
-  // useEffect(() => {
-  //   if (cars.length == 0) {
-  //     dispatch(getAllCars());
-  //   } else {
-  //     setcar(cars.find((o) => o._id == match));
-  //   }
-  // }, [cars]);
-
-  // useEffect(() => {
-  //   setTotalAmount(totalHours * car.rentPerHour);
-  //   if (driver) {
-  //     setTotalAmount(totalAmount + 30 * totalHours);
-  //   }
-  // }, [driver, totalHours]);
-
   useEffect(() => {
     if (cars.length === 0) {
       dispatch(getAllCars());
     } else {
       setcar(cars.find((o) => o._id === match));
     }
-  }, [cars, match]);
-  
+  }, [cars]);
+
   useEffect(() => {
-    let amount = totalHours * car.rentPerHour;
+    setTotalAmount(totalHours * car.rentPerHour);
     if (driver) {
-      amount += 30 * totalHours;
+      setTotalAmount(totalAmount + 30 * totalHours);
     }
-    setTotalAmount(amount);
-  }, [driver, totalHours, car.rentPerHour]);
+  }, [driver, totalHours]);
 
   function selectTimeSlots(values) {
     setFrom(moment(values[0]).format("MMM DD yyyy HH:mm"));
