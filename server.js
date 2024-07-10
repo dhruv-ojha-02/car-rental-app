@@ -24,10 +24,10 @@ app.use('/api/bookings/', require('./routes/bookingsRoute'));
 //     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 // });
 
-app.get("/*", function (req, res) {
+app.get("*", function (req, res) {
     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
  })
- 
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
