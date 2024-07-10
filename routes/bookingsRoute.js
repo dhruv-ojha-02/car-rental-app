@@ -25,41 +25,41 @@ router.post("/bookcar", async (req, res) => {
     //   },
     //   {
     //     idempotencyKey: uuidv4(),
-        
+
     //   }
     // );
 
     // if (payment) {
-      req.body.transactionId = token.id;//payment.source.id;
-      const newbooking = new Booking(req.body);
-      await newbooking.save();
-      const car = await Car.findOne({ _id: req.body.car });
-      // console.log(req.body.car);
-      car.bookedTimeSlots.push(req.body.bookedTimeSlots);
+    req.body.transactionId = token.id;//payment.source.id;
+    const newbooking = new Booking(req.body);
+    await newbooking.save();
+    const car = await Car.findOne({ _id: req.body.car });
+    console.log(req.body.car);
+    car.bookedTimeSlots.push(req.body.bookedTimeSlots);
 
-      await car.save();
-      res.send("Your booking is successful");
+    await car.save();
+    res.send("Your booking is successful");
     // } else {
     //   return res.status(400).json(error);
     // }
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     return res.status(400).json(error);
   }
 });
 
 
-router.get("/getallbookings", async(req, res) => {
+router.get("/getallbookings", async (req, res) => {
 
-    try {
+  try {
 
-        const bookings = await Booking.find().populate('car')
-        res.send(bookings)
-        
-    } catch (error) {
-        return res.status(400).json(error);
-    }
-  
+    const bookings = await Booking.find().populate('car')
+    res.send(bookings)
+
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+
 });
 
 
