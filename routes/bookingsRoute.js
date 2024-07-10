@@ -1,5 +1,5 @@
 const express = require("express");
-import axios from 'axios';
+const axios = require ('axios');
 const router = express.Router();
 const Booking = require("../models/bookingModel");
 const Car = require("../models/carModel");
