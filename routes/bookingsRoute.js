@@ -51,7 +51,7 @@ const stripe = require("stripe")(
 axios.defaults.withCredentials = true;
 
 // Function to book a car
-export const bookCar = (reqObj) => async (dispatch) => {
+const bookCar = (reqObj) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
 
   try {
