@@ -34,11 +34,11 @@ router.post("/bookcar", async (req, res) => {
       const newbooking = new Booking(req.body);
       await newbooking.save();
       const car = await Car.findOne({ _id: req.body.car });
-      console.log(req.body.car);
+      // console.log(req.body.car);
       car.bookedTimeSlots.push(req.body.bookedTimeSlots);
 
       await car.save();
-      res.send("Your booking is successfull");
+      res.send("Your booking is successful");
     // } else {
     //   return res.status(400).json(error);
     // }
